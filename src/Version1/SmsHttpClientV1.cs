@@ -15,11 +15,11 @@ namespace PipServices.Sms.Client.Version1
                 this.Configure(ConfigParams.FromValue(config));
         }
 
-        public Task SendMessageAsync(string correlationId, SmsMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageAsync(string correlationId, SmsMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message",
                     correlationId,
                     new
@@ -31,11 +31,11 @@ namespace PipServices.Sms.Client.Version1
             }
         }
 
-        public Task SendMessageToRecipientAsync(string correlationId, SmsRecipientV1 recipient, SmsMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageToRecipientAsync(string correlationId, SmsRecipientV1 recipient, SmsMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message_to_recipient",
                     correlationId,
                     new
@@ -48,11 +48,11 @@ namespace PipServices.Sms.Client.Version1
             }
         }
 
-        public Task SendMessageToRecipientsAsync(string correlationId, SmsRecipientV1[] recipients, SmsMessageV1 message, ConfigParams parameters)
+        public async Task SendMessageToRecipientsAsync(string correlationId, SmsRecipientV1[] recipients, SmsMessageV1 message, ConfigParams parameters)
         {
             using (var timing = Instrument(correlationId))
             {
-                return CallCommandAsync<Task>(
+                await CallCommandAsync<Task>(
                     "send_message_to_recipients",
                     correlationId,
                     new
